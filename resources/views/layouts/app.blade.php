@@ -1,0 +1,2870 @@
+    <!DOCTYPE html>
+    <html lang="id">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@yield('title', 'JOSS GANDOS - Restoran Indonesia Modern')</title>
+
+        <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}?v=2">
+
+        <!-- Bootstrap 5 -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+        <!-- Google Fonts - MENAMBAHKAN FONT INTER YANG LEBIH CLEAN -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+            rel="stylesheet">
+
+        @stack('styles')
+
+        <style>
+            :root {
+                --primary-red: #B22222;
+                --primary-dark: #8B0000;
+                --secondary-gold: #D4A017;
+                --accent-gold: #FFC145;
+                --neutral-cream: #FFF9F0;
+                --dark-charcoal: #2C2C2C;
+                --warm-brown: #8B7355;
+                --light-gray: #F8F9FA;
+                --wood-light: #E8D7B8;
+                --batik-pattern: #F0E6D2;
+                --gradient-red: linear-gradient(135deg, #B22222, #8B0000, #A52A2A);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Inter', sans-serif;
+                color: var(--dark-charcoal);
+                line-height: 1.7;
+                background-color: var(--neutral-cream);
+                overflow-x: hidden;
+                overflow-y: auto;
+                position: relative;
+            }
+
+            /* Background dengan tekstur kayu dan motif Indonesia */
+            body::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                /* background-image:
+                    url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23e8d7b8' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E"),
+                    linear-gradient(rgba(255, 249, 240, 0.95), rgba(255, 249, 240, 0.98)); */
+                background-size: 300px, cover;
+                pointer-events: none;
+                z-index: -1;
+            }
+
+            /* Ornamen sudut dengan motif batik */
+            body::after {
+                content: '';
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 200px;
+                height: 200px;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0,0 L100,0 L100,100 L0,100 Z' fill='none'/%3E%3Cpath d='M20,20 Q40,10 60,20 T100,20' stroke='%23B22222' stroke-width='0.5' fill='none' opacity='0.1'/%3E%3Cpath d='M20,40 Q40,30 60,40 T100,40' stroke='%23D4A017' stroke-width='0.5' fill='none' opacity='0.1'/%3E%3Cpath d='M20,60 Q40,50 60,60 T100,60' stroke='%23B22222' stroke-width='0.5' fill='none' opacity='0.1'/%3E%3C/svg%3E");
+                background-size: contain;
+                background-repeat: no-repeat;
+                pointer-events: none;
+                z-index: -1;
+            }
+
+            /* ================= NAVBAR DENGAN SHADOW GRADIENT MERAH PADA ACTIVE STATE ================= */
+            .navbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1000;
+
+                padding: .55rem 0;
+
+                background: linear-gradient(135deg, #B22222, #8B0000, #A52A2A);
+
+                border-bottom: 1px solid rgba(255, 255, 255, .15);
+
+                box-shadow: 0 6px 20px rgba(178, 34, 34, .25);
+
+                transition: all .35s ease;
+            }
+
+
+
+
+
+            .navbar.scrolled {
+                background: linear-gradient(135deg, #B22222, #8B0000, #A52A2A);
+
+                padding: .55rem 0;
+
+                box-shadow: 0 6px 20px rgba(178, 34, 34, .25);
+
+                border-bottom: 1px solid rgba(255, 255, 255, .15);
+            }
+
+
+            /* Container lebih ketat */
+            .navbar>.container {
+                max-width: 1200px;
+                padding-right: 20px;
+                padding-left: 20px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            /* Navbar container untuk mencegah overflow */
+            .navbar-collapse {
+                /* overflow: visible !important; */
+                flex-grow: 0;
+            }
+
+            /* Navbar items di tengah - SEMUA ITEM DALAM SATU BARIS */
+            .navbar-nav {
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: center;
+                align-items: center;
+                gap: 0.2rem;
+                padding: 0;
+                margin: 0;
+            }
+
+            /* Brand dengan Logo Image dan Teks */
+            .navbar-brand {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                gap: 12px;
+                margin-right: auto;
+                flex-shrink: 0;
+            }
+
+            .navbar-brand:hover {
+                transform: none;
+            }
+
+            .brand-logo {
+                height: 40px;
+                width: auto;
+                display: block;
+                transition: all 0.3s ease;
+                object-fit: contain;
+            }
+
+            .brand-text {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .brand-name {
+                font-family: 'Inter', sans-serif;
+                font-size: 1.5rem;
+                font-weight: 800;
+                color: #ffffff !important;
+                line-height: 1.1;
+                text-transform: uppercase;
+                letter-spacing: 0.8px;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            }
+
+            .brand-subtitle {
+                font-family: 'Inter', sans-serif;
+                font-size: 0.75rem;
+                font-weight: 600;
+                letter-spacing: 1.2px;
+                color: var(--secondary-gold);
+                text-transform: uppercase;
+                margin-top: 2px;
+            }
+
+            /* Nav Links - DENGAN SHADOW GRADIENT MERAH PADA ACTIVE STATE */
+            .nav-link {
+                color: #ffffff !important;
+                font-weight: 600;
+                padding: .5rem .8rem !important;
+                margin: 0 .1rem;
+
+                position: relative;
+
+                transition: all .3s ease;
+
+                border-radius: 50px;
+
+                font-family: 'Inter', sans-serif;
+                font-size: .95rem;
+
+                letter-spacing: normal;
+                text-transform: none;
+            }
+
+            /* HAPUS ICON DARI NAV LINK */
+            .nav-link i {
+                display: none !important;
+            }
+
+            /* Hover dan active state dengan shadow gradient merah */
+            .nav-link:hover {
+                color: #ffffff !important;
+
+                background: rgba(255, 255, 255, 0.15);
+
+                transform: translateY(-1px);
+
+                box-shadow:
+                    0 4px 15px rgba(0, 0, 0, .15),
+                    inset 0 0 0 1px rgba(255, 255, 255, .15);
+            }
+
+            .nav-link.active {
+                color: #ffffff !important;
+                background: #ffffff;
+                box-shadow: 0 6px 20px rgba(255, 255, 255, 0.18);
+                transform: translateY(-1px);
+            }
+
+
+            /* ==========================================
+   RESERVASI - SIMPLE MODERN
+   ========================================== */
+
+            .nav-link.reservasi-btn {
+                background: transparent !important;
+                color: #ffffff !important;
+
+                border: none !important;
+                box-shadow: none !important;
+
+                padding: .5rem .8rem !important;
+                margin: 0 .1rem;
+
+                border-radius: 0;
+
+                font-weight: 600;
+                font-family: 'Inter', sans-serif;
+                font-size: .95rem;
+
+                position: relative;
+
+                transition:
+                    color .3s ease,
+                    transform .3s ease;
+            }
+
+
+            /* Garis bawah */
+            .nav-link.reservasi-btn::after {
+                content: '';
+
+                position: absolute;
+                left: 50%;
+                bottom: 2px;
+
+                width: 0;
+                height: 2px;
+
+                background: #D4A017;
+                border-radius: 10px;
+
+                transform: translateX(-50%);
+
+                transition: width .3s ease;
+            }
+
+
+            /* Hover */
+            .nav-link.reservasi-btn:hover {
+                background: transparent !important;
+                color: #D4A017 !important;
+
+                transform: translateY(-2px);
+
+                box-shadow: none !important;
+            }
+
+
+            /* Garis muncul saat hover */
+            .nav-link.reservasi-btn:hover::after {
+                width: 35px;
+            }
+
+
+            /* Saat halaman Reservasi sedang aktif */
+            .nav-link.reservasi-btn.active {
+                background: transparent !important;
+                color: #ffffff !important;
+
+                transform: none;
+
+                box-shadow: none !important;
+            }
+
+
+            /* Active + hover tetap mendapatkan efek hover */
+            .nav-link.reservasi-btn.active:hover {
+                background: transparent !important;
+                color: #D4A017 !important;
+
+                transform: translateY(-2px);
+
+                box-shadow: none !important;
+            }
+
+
+            /* Garis tetap muncul saat active + hover */
+            .nav-link.reservasi-btn.active:hover::after {
+                width: 22px;
+            }
+
+            /* ==========================================
+   GALERI - SIMPLE MODERN
+   ========================================== */
+
+            .nav-link.galeri-btn {
+                background: transparent !important;
+                color: #ffffff !important;
+
+                border: none !important;
+                box-shadow: none !important;
+
+                position: relative;
+
+                transition:
+                    color .3s ease,
+                    transform .3s ease;
+            }
+
+
+            /* Garis bawah */
+            .nav-link.galeri-btn::after {
+                content: '';
+
+                position: absolute;
+                left: 50%;
+                bottom: 2px;
+
+                width: 0;
+                height: 2px;
+
+                background: #D4A017;
+                border-radius: 10px;
+
+                transform: translateX(-50%);
+
+                transition: width .3s ease;
+            }
+
+
+            /* Hover */
+            .nav-link.galeri-btn:hover {
+                background: transparent !important;
+                color: #D4A017 !important;
+
+                transform: translateY(-2px);
+
+                box-shadow: none !important;
+            }
+
+
+            /* Garis muncul saat hover */
+            .nav-link.galeri-btn:hover::after {
+                width: 35px;
+            }
+
+
+            /* Saat halaman Galeri aktif */
+            .nav-link.galeri-btn.active {
+                background: transparent !important;
+                color: #ffffff !important;
+
+                transform: none;
+
+                box-shadow: none !important;
+            }
+
+
+            /* Active + hover */
+            .nav-link.galeri-btn.active:hover {
+                background: transparent !important;
+                color: #D4A017 !important;
+
+                transform: translateY(-2px);
+
+                box-shadow: none !important;
+            }
+
+
+            /* Garis saat active + hover */
+            .nav-link.galeri-btn.active:hover::after {
+                width: 35px;
+            }
+
+            /* ==========================================
+   MENU - SIMPLE MODERN
+   ========================================== */
+
+            .nav-link.menu-btn {
+                background: transparent !important;
+                color: #ffffff !important;
+
+                border: none !important;
+                box-shadow: none !important;
+
+                position: relative;
+
+                transition:
+                    color .3s ease,
+                    transform .3s ease;
+            }
+
+            /* Garis bawah */
+            .nav-link.menu-btn::after {
+                content: '';
+
+                position: absolute;
+                left: 50%;
+                bottom: 2px;
+
+                width: 0;
+                height: 2px;
+
+                background: #D4A017;
+                border-radius: 10px;
+
+                transform: translateX(-50%);
+
+                transition: width .3s ease;
+            }
+
+            /* Hover */
+            .nav-link.menu-btn:hover {
+                background: transparent !important;
+                color: #D4A017 !important;
+
+                transform: translateY(-2px);
+
+                box-shadow: none !important;
+            }
+
+            /* Garis muncul saat hover */
+            .nav-link.menu-btn:hover::after {
+                width: 35px;
+            }
+
+            /* Saat halaman Menu aktif */
+            .nav-link.menu-btn.active {
+                background: transparent !important;
+                color: #ffffff !important;
+
+                transform: none;
+
+                box-shadow: none !important;
+            }
+
+            /* Active + hover */
+            .nav-link.menu-btn.active:hover {
+                background: transparent !important;
+                color: #D4A017 !important;
+
+                transform: translateY(-2px);
+
+                box-shadow: none !important;
+            }
+
+            /* Garis saat active + hover */
+            .nav-link.menu-btn.active:hover::after {
+                width: 35px;
+            }
+
+            /* ==========================================
+   ABOUT - SIMPLE MODERN
+   ========================================== */
+
+            .nav-link.about-btn {
+                background: transparent !important;
+                color: #ffffff !important;
+                border: none !important;
+                box-shadow: none !important;
+                position: relative;
+                transition:
+                    color .3s ease,
+                    transform .3s ease;
+            }
+
+            .nav-link.about-btn::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                bottom: 2px;
+                width: 0;
+                height: 2px;
+                background: #D4A017;
+                border-radius: 10px;
+                transform: translateX(-50%);
+                transition: width .3s ease;
+            }
+
+            .nav-link.about-btn:hover {
+                background: transparent !important;
+                color: #D4A017 !important;
+                transform: translateY(-2px);
+                box-shadow: none !important;
+            }
+
+            .nav-link.about-btn:hover::after {
+                width: 35px;
+            }
+
+            .nav-link.about-btn.active {
+                background: transparent !important;
+                color: #ffffff !important;
+                transform: none;
+                box-shadow: none !important;
+            }
+
+            .nav-link.about-btn.active:hover {
+                background: transparent !important;
+                color: #D4A017 !important;
+                transform: translateY(-2px);
+                box-shadow: none !important;
+            }
+
+            .nav-link.about-btn.active:hover::after {
+                width: 35px;
+            }
+
+            /* ==========================================
+   HOME - SIMPLE MODERN
+   ========================================== */
+
+            .nav-link.home-btn {
+                background: transparent !important;
+                color: #ffffff !important;
+                border: none !important;
+                box-shadow: none !important;
+                position: relative;
+                transition:
+                    color .3s ease,
+                    transform .3s ease;
+            }
+
+            .nav-link.home-btn::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                bottom: 2px;
+                width: 0;
+                height: 2px;
+                background: #D4A017;
+                border-radius: 10px;
+                transform: translateX(-50%);
+                transition: width .3s ease;
+            }
+
+            .nav-link.home-btn:hover {
+                background: transparent !important;
+                color: #D4A017 !important;
+                transform: translateY(-2px);
+                box-shadow: none !important;
+            }
+
+            .nav-link.home-btn:hover::after {
+                width: 35px;
+            }
+
+            .nav-link.home-btn.active {
+                background: transparent !important;
+                color: #ffffff !important;
+                transform: none;
+                box-shadow: none !important;
+            }
+
+            .nav-link.home-btn.active:hover {
+                background: transparent !important;
+                color: #D4A017 !important;
+                transform: translateY(-2px);
+                box-shadow: none !important;
+            }
+
+            .nav-link.home-btn.active:hover::after {
+                width: 35px;
+            }
+
+
+
+
+
+
+
+
+            /* Main Content */
+            main {
+                margin-top: 70px;
+            }
+
+            /* Hero Section */
+            .hero-section {
+                min-height: 100vh;
+                background: linear-gradient(rgba(44, 44, 44, 0.85), rgba(44, 44, 44, 0.9)),
+                    url('https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+                background-size: cover;
+                background-position: center;
+                /* background-attachment: fixed; */
+                display: flex;
+                align-items: center;
+                position: relative;
+                color: white;
+                padding: 4rem 0;
+                overflow: hidden;
+            }
+
+            @media (max-width:991px) {
+
+                .hero-section {
+
+                    background-attachment: scroll;
+
+                }
+
+            }
+
+            .hero-section::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20,50 Q40,30 60,50 T100,50' stroke='%23D4A017' stroke-width='0.5' fill='none' opacity='0.1'/%3E%3Cpath d='M0,30 Q20,10 40,30 T80,30' stroke='%23FFC145' stroke-width='0.5' fill='none' opacity='0.1'/%3E%3C/svg%3E");
+                background-size: 200px;
+                pointer-events: none;
+            }
+
+            .hero-content {
+                position: relative;
+                z-index: 2;
+                max-width: 800px;
+            }
+
+            .hero-title {
+                font-family: 'Playfair Display', serif;
+                font-size: 3.5rem;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                line-height: 1.2;
+                color: white;
+                position: relative;
+                display: inline-block;
+            }
+
+            .hero-title::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 0;
+                width: 100px;
+                height: 3px;
+                background: linear-gradient(90deg, var(--primary-red), var(--accent-gold));
+                border-radius: 2px;
+            }
+
+            .hero-title .highlight {
+                color: var(--accent-gold);
+                position: relative;
+                font-style: italic;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 2.5rem;
+                opacity: 0.9;
+                max-width: 600px;
+                line-height: 1.8;
+                font-family: 'Inter', sans-serif;
+            }
+
+            /* Section Design */
+            .section-padding {
+                padding: 5rem 0;
+                position: relative;
+            }
+
+            .section-padding::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 10%;
+                right: 10%;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, var(--secondary-gold), transparent);
+            }
+
+            .section-title {
+                position: relative;
+                margin-bottom: 3rem;
+                text-align: center;
+            }
+
+            .section-title h2 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                color: var(--dark-charcoal);
+                font-family: 'Playfair Display', serif;
+                position: relative;
+                display: inline-block;
+                padding: 0 3rem;
+            }
+
+            .section-title h2::before,
+            .section-title h2::after {
+                content: '✻';
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--primary-red);
+                font-size: 1.5rem;
+                opacity: 0.5;
+            }
+
+            .section-title h2::before {
+                left: 0;
+            }
+
+            .section-title h2::after {
+                right: 0;
+            }
+
+            .title-decoration {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+
+            .title-decoration span {
+                width: 40px;
+                height: 3px;
+                background: linear-gradient(90deg, var(--primary-red), var(--secondary-gold));
+                border-radius: 2px;
+                position: relative;
+            }
+
+            .title-decoration span::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 8px;
+                height: 8px;
+                background: var(--secondary-gold);
+                border-radius: 50%;
+            }
+
+            /* Cards */
+            .modern-card {
+                background: white;
+                border-radius: 16px;
+                overflow: hidden;
+                transition: all 0.4s ease;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                border: 1px solid rgba(0, 0, 0, 0.03);
+                height: 100%;
+                position: relative;
+            }
+
+            .modern-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, var(--primary-red), var(--secondary-gold));
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .modern-card:hover::before {
+                opacity: 1;
+            }
+
+            .modern-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            }
+
+            /* Buttons */
+            .btn-primary {
+                background: linear-gradient(135deg, var(--primary-red), var(--primary-dark));
+                border: none;
+                padding: 0.875rem 2rem;
+                font-weight: 700;
+                border-radius: 10px;
+                transition: all 0.4s ease;
+                position: relative;
+                overflow: hidden;
+                font-family: 'Inter', sans-serif;
+            }
+
+            .btn-primary::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                transition: left 0.6s ease;
+            }
+
+            .btn-primary:hover::before {
+                left: 100%;
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 15px 30px rgba(178, 34, 34, 0.4);
+            }
+
+            /* Footer */
+            footer {
+                background: linear-gradient(135deg, var(--dark-charcoal), #1a1a1a);
+                color: white;
+                padding: 60px 0 30px;
+                position: relative;
+                font-family: 'Inter', sans-serif;
+                height: auto;
+                min-height: 0;
+                max-height: none;
+                overflow: visible;
+            }
+
+            footer::before,
+            footer::after {
+                display: none;
+            }
+
+            /* Footer Logo dengan Image dan Teks */
+            .footer-logo-container {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-logo-wrapper {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 1.5rem;
+            }
+
+            .footer-logo {
+                height: 55px;
+                width: auto;
+                display: block;
+                transition: all 0.3s ease;
+            }
+
+            .footer-logo:hover {
+                transform: scale(1.05);
+            }
+
+            .footer-brand-text {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .footer-brand-name {
+                font-family: 'Inter', sans-serif;
+                font-size: 1.6rem;
+                font-weight: 800;
+                color: white;
+                line-height: 1.1;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            }
+
+            .footer-brand-subtitle {
+                font-family: 'Inter', sans-serif;
+                font-size: 0.8rem;
+                font-weight: 600;
+                letter-spacing: 1px;
+                color: var(--accent-gold);
+                text-transform: uppercase;
+                margin-top: 2px;
+            }
+
+            .footer-title {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+                color: white;
+                font-family: 'Inter', sans-serif;
+                font-weight: 700;
+                position: relative;
+                padding-bottom: 0.75rem;
+            }
+
+            .footer-title::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 40px;
+                height: 2px;
+                background: var(--accent-gold);
+            }
+
+            .footer-links {
+                list-style: none;
+                padding: 0;
+            }
+
+            .footer-links li {
+                margin-bottom: 0.75rem;
+                position: relative;
+                padding-left: 15px;
+            }
+
+            .footer-links li::before {
+                content: '›';
+                position: absolute;
+                left: 0;
+                color: var(--accent-gold);
+            }
+
+            .footer-links a {
+                color: rgba(255, 255, 255, 0.7);
+                text-decoration: none;
+                transition: all 0.3s ease;
+                display: inline-block;
+                font-weight: 500;
+                font-family: 'Inter', sans-serif;
+            }
+
+            .footer-links a:hover {
+                color: var(--accent-gold);
+                transform: translateX(5px);
+            }
+
+            .social-icons {
+                display: flex;
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+
+            .social-icon {
+                width: 40px;
+                height: 40px;
+                background: rgba(255, 255, 255, 0.08);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--accent-gold);
+                text-decoration: none;
+                transition: all 0.3s ease;
+                border: 1px solid rgba(255, 193, 69, 0.2);
+            }
+
+            .social-icon:hover {
+                background: var(--accent-gold);
+                color: var(--dark-charcoal);
+                transform: translateY(-3px) rotate(5deg);
+                box-shadow: 0 5px 15px rgba(255, 193, 69, 0.3);
+            }
+
+            .copyright {
+                border-top: 1px solid rgba(255, 255, 255, 0.08);
+                padding-top: 2rem;
+                margin-top: 4rem;
+                text-align: center;
+                color: rgba(255, 255, 255, 0.4);
+                font-size: 0.9rem;
+                position: relative;
+            }
+
+            .copyright::before {
+                position: absolute;
+                top: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                color: var(--accent-gold);
+                font-size: 1.2rem;
+                background: linear-gradient(135deg, var(--dark-charcoal), #1a1a1a);
+                padding: 0 15px;
+            }
+
+            /* Animations */
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes float {
+
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+
+            .animate-fade-in {
+                animation: fadeIn 0.6s ease forwards;
+            }
+
+            .animate-float {
+                animation: float 3s ease-in-out infinite;
+            }
+
+            /* ================= RESPONSIVE DESIGN ================= */
+            @media (max-width: 1200px) {
+                .navbar>.container {
+                    max-width: 100%;
+                    padding-right: 15px;
+                    padding-left: 15px;
+                }
+
+                .hero-title {
+                    font-size: 3rem;
+                }
+
+                .section-title h2 {
+                    font-size: 2.2rem;
+                }
+
+                /* Navbar adjustment untuk laptop */
+                .nav-link {
+                    padding: 0.5rem 0.7rem !important;
+                }
+
+                .nav-link.reservasi-btn {
+                    padding: 0.5rem 1.1rem !important;
+                }
+
+                .brand-name {
+                    font-size: 1.4rem;
+                    letter-spacing: 0.6px;
+                }
+
+                .brand-subtitle {
+                    font-size: 0.7rem;
+                    letter-spacing: 1px;
+                }
+
+                .footer-brand-name {
+                    font-size: 1.5rem;
+                }
+
+                .footer-brand-subtitle {
+                    font-size: 0.75rem;
+                    letter-spacing: 0.8px;
+                }
+            }
+
+            @media (max-width: 1100px) {
+
+                /* Sedikit penyesuaian untuk layar medium */
+                .nav-link {
+                    padding: 0.55rem 0.7rem !important;
+                    font-size: 0.88rem;
+                    margin: 0 0.05rem;
+                }
+
+                .nav-link.reservasi-btn {
+                    padding: 0.55rem 1.1rem !important;
+                    font-size: 0.88rem;
+                    margin-left: 0.5rem;
+                }
+
+                .brand-name {
+                    font-size: 1.3rem;
+                    letter-spacing: 0.5px;
+                }
+
+                .brand-subtitle {
+                    font-size: 0.65rem;
+                    letter-spacing: 0.8px;
+                }
+            }
+
+            @media (max-width: 992px) {
+                .hero-title {
+                    font-size: 2.5rem;
+                }
+
+                .section-padding {
+                    padding: 4rem 0;
+                }
+
+                /* Tablet view - Navbar menjadi vertikal */
+                .navbar-nav {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 0.3rem;
+                    padding: 1rem 0;
+                    text-align: center;
+                }
+
+                .nav-link {
+                    padding: 0.6rem 0.9rem !important;
+                    font-size: 0.9rem;
+                    margin: 0.05rem;
+                    width: auto;
+                    display: inline-block;
+                }
+
+                .nav-link.reservasi-btn {
+                    margin: 0.3rem auto;
+                    width: auto;
+                    padding: 0.6rem 1.3rem !important;
+                    font-size: 0.9rem;
+                    display: block;
+                    max-width: 200px;
+                }
+
+                .brand-logo {
+                    height: 40px;
+                }
+
+                .brand-name {
+                    font-size: 1.3rem;
+                    letter-spacing: 0.5px;
+                }
+
+                .brand-subtitle {
+                    font-size: 0.65rem;
+                    letter-spacing: 0.8px;
+                }
+
+                .footer-logo {
+                    height: 50px;
+                }
+
+                .footer-brand-name {
+                    font-size: 1.4rem;
+                }
+
+                .footer-brand-subtitle {
+                    font-size: 0.7rem;
+                    letter-spacing: 0.8px;
+                }
+
+                main {
+                    margin-top: 0px;
+                }
+            }
+
+
+
+            @media (max-width: 576px) {
+                .hero-title {
+                    font-size: 2rem;
+                }
+
+                .section-title h2 {
+                    font-size: 1.7rem;
+                }
+
+                /* Small mobile - navbar items lebih rapat */
+                .navbar-brand {
+                    gap: 8px;
+                }
+
+                .brand-logo {
+                    height: 35px;
+                }
+
+                .brand-name {
+                    font-size: 1.1rem;
+                    letter-spacing: 0.3px;
+                }
+
+                .brand-subtitle {
+                    font-size: 0.55rem;
+                    letter-spacing: 0.5px;
+                }
+
+                .nav-link {
+                    padding: 0.45rem 0.7rem !important;
+                    font-size: 0.8rem;
+                    margin: 0 0.02rem;
+                }
+
+                .nav-link.reservasi-btn {
+                    padding: 0.45rem 1rem !important;
+                    font-size: 0.8rem;
+                    margin-left: 0.3rem;
+                }
+
+                .footer-logo-wrapper {
+                    gap: 10px;
+                }
+
+                .footer-logo {
+                    height: 40px;
+                }
+
+                .footer-brand-name {
+                    font-size: 1.1rem;
+                }
+
+                .footer-brand-subtitle {
+                    font-size: 0.6rem;
+                    letter-spacing: 0.5px;
+                }
+            }
+
+            @media (max-width: 480px) {
+
+                /* Extra small devices - navbar di tengah sempurna */
+                .navbar-brand {
+                    gap: 6px;
+                }
+
+                .brand-logo {
+                    height: 32px;
+                }
+
+                .brand-name {
+                    font-size: 0.95rem;
+                    letter-spacing: 0.2px;
+                }
+
+                .brand-subtitle {
+                    font-size: 0.5rem;
+                    letter-spacing: 0.4px;
+                }
+
+                .nav-link {
+                    padding: 0.4rem 0.6rem !important;
+                    font-size: 0.75rem;
+                    margin: 0 0.01rem;
+                }
+
+                .navbar-toggler {
+                    padding: 0.25rem 0.5rem;
+                    font-size: 0.875rem;
+                }
+
+                .nav-link.reservasi-btn {
+                    padding: 0.4rem 0.9rem !important;
+                    font-size: 0.75rem;
+                    margin-left: 0.2rem;
+                }
+
+                .navbar-nav {
+                    gap: 0.2rem;
+                }
+            }
+
+            @media (max-width: 360px) {
+
+                /* Very small devices */
+                .navbar-brand {
+                    gap: 5px;
+                }
+
+                .brand-logo {
+                    height: 30px;
+                }
+
+                .brand-name {
+                    font-size: 0.9rem;
+                    letter-spacing: 0.1px;
+                }
+
+                .brand-subtitle {
+                    font-size: 0.45rem;
+                    letter-spacing: 0.3px;
+                }
+
+                .nav-link {
+                    padding: 0.35rem 0.5rem !important;
+                    font-size: 0.7rem;
+                    margin: 0;
+                }
+
+                .nav-link.reservasi-btn {
+                    padding: 0.35rem 0.8rem !important;
+                    font-size: 0.7rem;
+                    margin-left: 0.1rem;
+                }
+            }
+
+            /* ==========================================
+   MODERN MINIMAL SCROLLBAR
+   ========================================== */
+
+            html {
+                scrollbar-width: thin;
+                scrollbar-color: #9a9a9a transparent;
+            }
+
+            ::-webkit-scrollbar {
+                width: 7px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #9a9a9a;
+                border-radius: 10px;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #707070;
+            }
+
+            /* Loading Spinner */
+            .spinner {
+                width: 40px;
+                height: 40px;
+                border: 4px solid var(--neutral-cream);
+                border-top: 4px solid var(--primary-red);
+                border-right: 4px solid var(--secondary-gold);
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            /* ==========================================
+   DESKTOP NAVBAR ENTRY ANIMATION
+========================================== */
+
+            @media (min-width:992px) {
+
+                .navbar-nav .nav-item {
+                    opacity: 0;
+                    transform: translateY(-25px);
+                    animation: navbarReveal .7s cubic-bezier(.22, 1, .36, 1) forwards;
+                }
+
+                .navbar-nav .nav-item:nth-child(1) {
+                    animation-delay: .15s;
+                }
+
+                .navbar-nav .nav-item:nth-child(2) {
+                    animation-delay: .30s;
+                }
+
+                .navbar-nav .nav-item:nth-child(3) {
+                    animation-delay: .45s;
+                }
+
+                .navbar-nav .nav-item:nth-child(4) {
+                    animation-delay: .60s;
+                }
+
+                .navbar-nav .nav-item:nth-child(5) {
+                    animation-delay: .75s;
+                }
+
+                .navbar-collapse {
+                    display: flex !important;
+                    opacity: 1;
+                    transform: none;
+                    overflow: visible;
+                }
+
+                .navbar-nav {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                }
+
+            }
+
+            @keyframes navbarReveal {
+
+                from {
+
+                    opacity: 0;
+
+                    transform: translateY(-18px);
+
+                }
+
+                to {
+
+                    opacity: 1;
+
+                    transform: translateY(0);
+
+                }
+
+            }
+
+            @media (min-width:992px) {
+
+                .navbar-collapse {
+
+                    display: flex !important;
+
+                    opacity: 1 !important;
+
+                    transform: none !important;
+
+                    overflow: visible !important;
+
+                }
+
+                .navbar-nav {
+
+                    display: flex !important;
+
+                    flex-direction: row;
+
+                    align-items: center;
+
+                }
+
+
+            }
+
+
+
+
+
+
+
+
+
+            /* ==========================================
+   MOBILE NAVBAR - SYNCHRONIZED ANIMATION
+   ========================================== */
+
+            @media (max-width: 991.98px) {
+
+                /* Tombol hamburger */
+                .navbar-toggler {
+                    background: transparent !important;
+                    border: none !important;
+                    border-radius: 8px;
+                    box-shadow: none !important;
+                }
+
+                .navbar-toggler:focus {
+                    box-shadow: none !important;
+                }
+
+                .navbar-toggler-icon {
+                    background-image: none !important;
+                    width: 1.5em;
+                    height: 1.2em;
+                    position: relative;
+                    display: block;
+                }
+
+                .navbar-toggler-icon::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 3px;
+                    background: #fff;
+                    border-radius: 5px;
+                    box-shadow: 0 6px 0 #fff, 0 12px 0 #fff;
+                }
+
+                /* Pertahankan background merah utama */
+                .navbar,
+                .navbar.scrolled {
+                    background: linear-gradient(135deg,
+                            #B22222,
+                            #8B0000,
+                            #A52A2A) !important;
+
+                    padding-top: .55rem !important;
+                    padding-bottom: .55rem !important;
+
+                    border-bottom: 1px solid rgba(255, 255, 255, .15);
+                    box-shadow: 0 6px 20px rgba(178, 34, 34, .25);
+                }
+
+                /* Dropdown berada di bawah logo dan hamburger */
+                .navbar>.container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                }
+
+                /* Gunakan background navbar di belakang menu.
+       Tidak ada kotak, warna transparan tambahan,
+       maupun bayangan khusus pada dropdown. */
+                #navbarNav,
+                #navbarNav.collapsing,
+                #navbarNav.show {
+                    flex: 0 0 100vw !important;
+                    width: 100vw !important;
+                    max-width: 100vw !important;
+
+                    margin-left: calc(50% - 50vw) !important;
+                    margin-right: calc(50% - 50vw) !important;
+
+                    background: transparent !important;
+                    border: none !important;
+                    border-radius: 0 !important;
+                    box-shadow: none !important;
+
+                    overflow: hidden;
+                    transform-origin: top center;
+                }
+
+                /* Kecepatan perubahan tinggi background */
+                #navbarNav.collapsing {
+                    transition: height .42s cubic-bezier(.22, 1, .36, 1) !important;
+                }
+
+                /* Susunan judul menu */
+                #navbarNav .navbar-nav {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    flex-wrap: wrap;
+
+                    width: 100%;
+                    padding: 1rem 0;
+                    gap: .3rem;
+                }
+
+                /* Kondisi normal: teks terlihat */
+                #navbarNav .nav-item {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+
+                /* Animasi masuk */
+                #navbarNav.opening .nav-item {
+                    animation: menuItemEnter .24s cubic-bezier(.22, 1, .36, 1) both;
+                }
+
+                #navbarNav.opening .nav-item:nth-child(1) {
+                    animation-delay: 0s;
+                }
+
+                #navbarNav.opening .nav-item:nth-child(2) {
+                    animation-delay: .04s;
+                }
+
+                #navbarNav.opening .nav-item:nth-child(3) {
+                    animation-delay: .08s;
+                }
+
+                #navbarNav.opening .nav-item:nth-child(4) {
+                    animation-delay: .12s;
+                }
+
+                #navbarNav.opening .nav-item:nth-child(5) {
+                    animation-delay: .16s;
+                }
+
+                /* Animasi keluar: dari menu terakhir ke pertama */
+                #navbarNav.closing-items .nav-item {
+                    animation: menuItemExit .24s cubic-bezier(.55, 0, .8, .4) both;
+                }
+
+                #navbarNav.closing-items .nav-item:nth-child(1) {
+                    animation-delay: .16s;
+                }
+
+                #navbarNav.closing-items .nav-item:nth-child(2) {
+                    animation-delay: .12s;
+                }
+
+                #navbarNav.closing-items .nav-item:nth-child(3) {
+                    animation-delay: .08s;
+                }
+
+                #navbarNav.closing-items .nav-item:nth-child(4) {
+                    animation-delay: .04s;
+                }
+
+                #navbarNav.closing-items .nav-item:nth-child(5) {
+                    animation-delay: 0s;
+                }
+            }
+
+            /* Teks masuk dari atas */
+            @keyframes menuItemEnter {
+                from {
+                    opacity: 0;
+                    transform: translateY(-12px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Teks keluar kembali ke atas */
+            @keyframes menuItemExit {
+                from {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+
+                to {
+                    opacity: 0;
+                    transform: translateY(-12px);
+                }
+            }
+
+
+
+            /* =====================================
+   MOBILE PERFORMANCE OPTIMIZATION
+===================================== */
+
+            @media (max-width:991px) {
+
+                .navbar {
+
+                    backdrop-filter: blur(20px);
+
+                    -webkit-backdrop-filter: blur(20px);
+
+                }
+
+            }
+
+            /* FOOTER MOBILE */
+            /* ==========================================
+   FOOTER RESPONSIVE - SEMUA PERANGKAT MOBILE
+   ========================================== */
+
+            footer {
+                width: 100%;
+                max-width: 100%;
+                height: auto !important;
+                min-height: 0 !important;
+                max-height: none !important;
+                overflow: visible !important;
+                box-sizing: border-box;
+            }
+
+            footer *,
+            footer *::before,
+            footer *::after {
+                box-sizing: border-box;
+            }
+
+            /* Container footer */
+            footer>.container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            /* Jangan biarkan isi flex/grid melebar keluar */
+            footer .row {
+                width: 100%;
+                max-width: 100%;
+                height: auto !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+
+            /* Semua kolom */
+            footer .row>[class*="col-"] {
+                min-width: 0;
+            }
+
+            /* Logo footer */
+            .footer-logo-wrapper {
+                width: 100%;
+                max-width: 100%;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .footer-logo {
+                max-width: 100%;
+                height: 55px;
+                width: auto;
+                flex-shrink: 0;
+            }
+
+            .footer-brand-text {
+                min-width: 0;
+                max-width: 100%;
+            }
+
+            .footer-brand-name,
+            .footer-brand-subtitle {
+                max-width: 100%;
+                overflow-wrap: anywhere;
+                word-break: break-word;
+            }
+
+            /* Deskripsi footer */
+            .footer-logo-container>p {
+                max-width: 100%;
+                overflow-wrap: anywhere;
+                word-break: break-word;
+            }
+
+            /* Link footer */
+            .footer-links {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .footer-links li,
+            .footer-links a {
+                max-width: 100%;
+                overflow-wrap: anywhere;
+                word-break: break-word;
+            }
+
+            /* Contact information */
+            footer .d-flex {
+                min-width: 0;
+                max-width: 100%;
+            }
+
+            footer .d-flex>div {
+                min-width: 0;
+                max-width: 100%;
+            }
+
+            /* Alamat, email, nomor telepon */
+            footer a.text-white-50 {
+                max-width: 100%;
+                overflow-wrap: anywhere;
+                word-break: break-word;
+            }
+
+            /* Social icons */
+            .social-icons {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+                max-width: 100%;
+            }
+
+            /* Copyright */
+            .copyright {
+                width: 100%;
+                max-width: 100%;
+                overflow: hidden;
+            }
+
+            .copyright p {
+                max-width: 100%;
+                overflow-wrap: anywhere;
+                word-break: break-word;
+            }
+
+
+            /* ==========================================
+   TABLET
+   ========================================== */
+
+            @media (max-width: 991.98px) {
+
+                footer {
+                    padding: 45px 0 0 !important;
+                }
+
+                footer>.container {
+                    width: 100%;
+                    max-width: 100%;
+                    padding-left: 24px;
+                    padding-right: 24px;
+                }
+
+                footer .row {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                footer .row>[class*="col-"] {
+                    width: 100%;
+                    max-width: 100%;
+                    flex: 0 0 100%;
+                    padding-left: 0 !important;
+                    padding-right: 0 !important;
+                    margin-bottom: 30px !important;
+                }
+
+                .footer-logo {
+                    height: 50px;
+                }
+
+                .footer-brand-name {
+                    font-size: 1.4rem;
+                }
+
+                .footer-brand-subtitle {
+                    font-size: 0.7rem;
+                }
+
+                .copyright {
+                    margin-top: 15px !important;
+                    padding: 20px 0 25px !important;
+                }
+            }
+
+
+            /* ==========================================
+   MOBILE
+   ========================================== */
+
+            @media (max-width: 768px) {
+
+                footer {
+                    width: 100vw;
+                    max-width: 100vw;
+                    padding: 35px 0 0 !important;
+                    margin: 0 !important;
+                    overflow: visible !important;
+                }
+
+                footer>.container {
+                    width: 100%;
+                    max-width: 100%;
+                    padding-left: 20px;
+                    padding-right: 20px;
+                    margin: 0;
+                }
+
+                footer .row {
+                    width: 100%;
+                    max-width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                }
+
+                footer .row>[class*="col-"] {
+                    width: 100%;
+                    max-width: 100%;
+                    flex: 0 0 100%;
+                    margin: 0 0 28px !important;
+                    padding: 0 !important;
+                }
+
+                /* Logo */
+                .footer-logo-wrapper {
+                    width: 100%;
+                    gap: 10px;
+                    align-items: center;
+                }
+
+                .footer-logo {
+                    width: auto;
+                    max-width: 75px;
+                    height: 42px;
+                    flex-shrink: 0;
+                    object-fit: contain;
+                }
+
+                .footer-brand-text {
+                    flex: 1 1 auto;
+                    min-width: 0;
+                    overflow: hidden;
+                }
+
+                .footer-brand-name {
+                    font-size: 1.15rem;
+                    line-height: 1.15;
+                    white-space: normal;
+                    overflow-wrap: anywhere;
+                }
+
+                .footer-brand-subtitle {
+                    font-size: 0.62rem;
+                    line-height: 1.3;
+                    letter-spacing: 0.5px;
+                    white-space: normal;
+                    overflow-wrap: anywhere;
+                }
+
+                /* Deskripsi */
+                .footer-logo-container>p {
+                    width: 100%;
+                    max-width: 100%;
+                    font-size: 0.88rem !important;
+                    line-height: 1.65 !important;
+                    margin-top: 15px !important;
+                    margin-bottom: 20px !important;
+                    overflow-wrap: anywhere;
+                    word-break: break-word;
+                }
+
+                /* Judul */
+                .footer-title {
+                    font-size: 1rem;
+                    line-height: 1.3;
+                    margin-bottom: 1rem;
+                }
+
+                /* Navigasi */
+                .footer-links li {
+                    margin-bottom: 0.6rem;
+                }
+
+                .footer-links a {
+                    font-size: 0.88rem;
+                    line-height: 1.5;
+                }
+
+                /* Jam operasional */
+                footer .mb-4,
+                footer .mb-3 {
+                    max-width: 100%;
+                }
+
+                /* Contact */
+                footer .d-flex {
+                    width: 100%;
+                    max-width: 100%;
+                    align-items: flex-start !important;
+                }
+
+                footer .d-flex>i {
+                    flex: 0 0 20px;
+                }
+
+                footer .d-flex>div {
+                    flex: 1 1 auto;
+                    min-width: 0;
+                    width: 0;
+                }
+
+                footer a.text-white-50 {
+                    display: inline;
+                    font-size: 0.82rem !important;
+                    line-height: 1.6;
+                    overflow-wrap: anywhere;
+                    word-break: break-word;
+                }
+
+                /* Email khusus supaya tidak melebar */
+                footer a[href*="mail.google.com"] {
+                    overflow-wrap: anywhere;
+                    word-break: break-all;
+                }
+
+                /* Social */
+                .social-icons {
+                    gap: 10px;
+                    margin-top: 1.25rem;
+                    flex-wrap: wrap;
+                }
+
+                .social-icon {
+                    width: 38px;
+                    height: 38px;
+                    flex: 0 0 38px;
+                }
+
+                /* Copyright */
+                footer .copyright {
+                    width: 100%;
+                    max-width: 100%;
+                    margin: 0 !important;
+                    padding: 18px 0 24px !important;
+                    text-align: center;
+                }
+
+                footer .copyright p {
+                    width: 100%;
+                    max-width: 100%;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    font-size: 0.68rem !important;
+                    line-height: 1.6 !important;
+                    overflow-wrap: anywhere;
+                    word-break: break-word;
+                }
+            }
+
+
+            /* ==========================================
+   IPHONE XR / 11 / X / XS / 12 MINI
+   ========================================== */
+
+            @media (max-width: 414px) {
+
+                footer>.container {
+                    padding-left: 16px;
+                    padding-right: 16px;
+                }
+
+                footer {
+                    padding-top: 30px !important;
+                }
+
+                .footer-logo-wrapper {
+                    gap: 8px;
+                }
+
+                .footer-logo {
+                    max-width: 62px;
+                    height: 38px;
+                }
+
+                .footer-brand-name {
+                    font-size: 1rem;
+                }
+
+                .footer-brand-subtitle {
+                    font-size: 0.56rem;
+                    letter-spacing: 0.35px;
+                }
+
+                .footer-logo-container>p {
+                    font-size: 0.82rem !important;
+                    line-height: 1.6 !important;
+                }
+
+                .footer-title {
+                    font-size: 0.95rem;
+                }
+
+                .footer-links a {
+                    font-size: 0.84rem;
+                }
+
+                footer a.text-white-50 {
+                    font-size: 0.78rem !important;
+                }
+
+                .copyright p {
+                    font-size: 0.64rem !important;
+                }
+            }
+
+
+            /* ==========================================
+   IPHONE SE / PERANGKAT KECIL
+   ========================================== */
+
+            @media (max-width: 375px) {
+
+                footer>.container {
+                    padding-left: 14px;
+                    padding-right: 14px;
+                }
+
+                .footer-logo {
+                    max-width: 55px;
+                    height: 34px;
+                }
+
+                .footer-brand-name {
+                    font-size: 0.92rem;
+                }
+
+                .footer-brand-subtitle {
+                    font-size: 0.5rem;
+                    letter-spacing: 0.25px;
+                }
+
+                .footer-logo-container>p {
+                    font-size: 0.78rem !important;
+                }
+
+                .footer-title {
+                    font-size: 0.9rem;
+                }
+
+                .footer-links a {
+                    font-size: 0.8rem;
+                }
+
+                footer a.text-white-50 {
+                    font-size: 0.74rem !important;
+                }
+
+                .social-icon {
+                    width: 36px;
+                    height: 36px;
+                    flex-basis: 36px;
+                }
+
+                footer .copyright p {
+                    font-size: 0.6rem !important;
+                }
+            }
+
+
+            /* ==========================================
+   PERANGKAT SANGAT KECIL
+   ========================================== */
+
+            @media (max-width: 320px) {
+
+                footer>.container {
+                    padding-left: 12px;
+                    padding-right: 12px;
+                }
+
+                .footer-logo-wrapper {
+                    gap: 7px;
+                }
+
+                .footer-logo {
+                    max-width: 48px;
+                    height: 30px;
+                }
+
+                .footer-brand-name {
+                    font-size: 0.84rem;
+                }
+
+                .footer-brand-subtitle {
+                    font-size: 0.45rem;
+                }
+
+                .footer-logo-container>p {
+                    font-size: 0.74rem !important;
+                }
+
+                .footer-title {
+                    font-size: 0.86rem;
+                }
+
+                .footer-links a {
+                    font-size: 0.76rem;
+                }
+
+                footer a.text-white-50 {
+                    font-size: 0.7rem !important;
+                }
+
+                footer .copyright p {
+                    font-size: 0.56rem !important;
+                }
+            }
+        </style>
+
+        @yield('styles')
+    </head>
+
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <!-- Logo dan Teks di Header -->
+                <a class="navbar-brand" href="{{ route('home') }}">
+                    <img src="https://image2url.com/r2/default/images/1772507915575-893cf187-2305-4535-8818-cb83425b6fab.png"
+                        alt="JOSS GANDOS - Restoran Indonesia" class="brand-logo">
+                    <div class="brand-text">
+                        <div class="brand-name">JOSS GANDOS KETINTANG</div>
+                        <div class="brand-subtitle">Resto Cita Rasa Nusantara No 1</div>
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto align-items-lg-center">
+                        <!-- Menu Items dengan Shadow Gradient Merah pada Active State -->
+                        <li class="nav-item">
+                            <a class="nav-link home-btn {{ request()->routeIs('home') ? 'active' : '' }}"
+                                href="{{ route('home') }}">
+                                Home
+                            </a>
+                        </li>
+
+                        <!-- Reservasi dengan Gradient Merah - This now serves both reservation and contact purposes -->
+                        <li class="nav-item">
+                            <a href="{{ route('reservation') }}"
+                                class="nav-link reservasi-btn {{ request()->routeIs('reservation') ? 'active' : '' }}">
+                                Reservasi
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link menu-btn {{ request()->routeIs('menu') ? 'active' : '' }}"
+                                href="{{ route('menu') }}">
+                                Menu
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link galeri-btn {{ request()->routeIs('gallery') ? 'active' : '' }}"
+                                href="{{ route('gallery') }}">
+                                Galeri
+                            </a>
+                        </li>
+                        <!-- CONTACT LINK REMOVED - Now using Reservasi page for contact information -->
+
+                        <li class="nav-item">
+                            <a class="nav-link about-btn {{ request()->routeIs('about') ? 'active' : '' }}"
+                                href="{{ route('about') }}">
+                                About
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+            @yield('content')
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <!-- Logo dan Teks di Footer -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-logo-container">
+                            <div class="footer-logo-wrapper">
+                                <img src="https://image2url.com/r2/default/images/1772507915575-893cf187-2305-4535-8818-cb83425b6fab.png"
+                                    alt="JOSS GANDOS - Restoran Indonesia" class="footer-logo">
+                                <div class="footer-brand-text">
+                                    <div class="footer-brand-name">JOSS GANDOS KETINTANG</div>
+                                    <div class="footer-brand-subtitle">RESTORAN INDONESIA</div>
+                                </div>
+                            </div>
+                            <p class="text-white-50 mt-3 mb-4" style="font-size: 0.95rem; line-height: 1.7;">
+                                Menjaga keaslian cita rasa Indonesia dengan sentuhan modern.
+                                Setiap hidangan adalah cerita tentang warisan kuliner Nusantara
+                                yang kami jaga dengan penuh kebanggaan.
+                            </p>
+                            <div class="social-icons">
+                                <a href="https://www.instagram.com/restojossgandos_ketintang?igsh=NWVkMWc1Nmdpd2F6"
+                                    class="social-icon" target="_blank" aria-label="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://www.facebook.com/share/1Dd1HHqdTs/" class="social-icon"
+                                    target="_blank" aria-label="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://www.tiktok.com/@rstojossgandos.ketintang?_r=1&_t=ZS-94bPfs7Pr6a"
+                                    class="social-icon" target="_blank" aria-label="TikTok">
+                                    <i class="fab fa-tiktok"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="col-lg-2 col-md-6 mb-5">
+                        <h5 class="footer-title">Navigasi</h5>
+                        <ul class="footer-links">
+                            <li><a href="{{ route('home') }}">Home</a></li>
+                            <li>
+                                <a href="{{ route('reservation') }}">Reservasi & Kontak</a>
+                            </li>
+                            <li><a href="{{ route('menu') }}">Menu</a></li>
+                            <li><a href="{{ route('gallery') }}">Galeri</a></li>
+                            <!-- Contact link removed from footer navigation -->
+
+                            <li><a href="{{ route('about') }}">About</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Opening Hours -->
+                    <div class="col-lg-3 col-md-6 mb-5">
+                        <h5 class="footer-title">Jam Operasional</h5>
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="far fa-clock me-3" style="color: var(--accent-gold); width: 20px;"></i>
+                                <div>
+                                    <p class="mb-1 fw-semibold" style="color: white;">Setiap Hari</p>
+                                    <p class="mb-0 text-white-50 small">10:00 - 22:00 WIB</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="col-lg-3 col-md-6 mb-5">
+                        <h5 class="footer-title">Hubungi Kami</h5>
+                        <div class="mb-4">
+                            <div class="d-flex align-items-start mb-3">
+                                <i class="fas fa-map-marker-alt me-3 mt-1"
+                                    style="color: var(--accent-gold); width: 20px;"></i>
+                                <div>
+                                    <p class="mb-1 fw-semibold" style="color: white;">Alamat</p>
+                                    <a href="https://www.google.com/maps/place/resto+joss+gandos+ketintang/data=!4m2!3m1!1s0x2dd7fbbc457099a7:0x532f9878c0a059e8?sa=X&ved=1t:242&ictx=111"
+                                        target="_blank" class="text-white-50 small text-decoration-none">
+
+                                        Jl. Jetis Seraten, Ketintang, Kec. Gayungan<br>
+                                        Surabaya, Jawa Timur 60231
+
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fas fa-phone me-3" style="color: var(--accent-gold); width: 20px;"></i>
+                                <div>
+                                    <p class="mb-1 fw-semibold" style="color: white;">Telepon</p>
+                                    <a href="https://wa.me/6285649588953" target="_blank"
+                                        class="text-white-50 small text-decoration-none">085649588953
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fas fa-envelope me-3" style="color: var(--accent-gold); width: 20px;"></i>
+                                <div>
+                                    <p class="mb-1 fw-semibold" style="color: white;">Email</p>
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ketintangjossgandos@gmail.com"
+                                        target="_blank" rel="noopener noreferrer"
+                                        class="text-white-50 small text-decoration-none">
+                                        ketintangjossgandos@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Copyright -->
+                <div class="copyright">
+                    <p class="mb-2">&copy; {{ date('Y') }} Resto Joss Gandos. Hak cipta dilindungi.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+            // Navbar scroll effect
+            document.addEventListener('DOMContentLoaded', function() {
+                const navbar = document.querySelector('.navbar');
+                const brandLogo = document.querySelector('.brand-logo');
+
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 30) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                });
+
+                // Smooth scroll for anchor links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                });
+
+                // Logo hover effect
+                if (brandLogo) {
+                    brandLogo.addEventListener('mouseenter', function() {
+                        this.style.transform = 'scale(1.05) rotate(2deg)';
+                    });
+
+                    brandLogo.addEventListener('mouseleave', function() {
+                        this.style.transform = 'scale(1) rotate(0)';
+                    });
+                }
+
+                // Footer logo hover effect
+                const footerLogo = document.querySelector('.footer-logo');
+                if (footerLogo) {
+                    footerLogo.addEventListener('mouseenter', function() {
+                        this.style.transform = 'scale(1.05)';
+                    });
+
+                    footerLogo.addEventListener('mouseleave', function() {
+                        this.style.transform = 'scale(1)';
+                    });
+                }
+
+                // Brand text hover effect
+                const brandText = document.querySelector('.brand-text');
+                if (brandText) {
+                    brandText.addEventListener('mouseenter', function() {
+                        this.querySelector('.brand-name').style.color = 'var(--primary-dark)';
+                        this.querySelector('.brand-subtitle').style.color = 'var(--accent-gold)';
+                    });
+
+                    brandText.addEventListener('mouseleave', function() {
+                        this.querySelector('.brand-name').style.color = 'var(--primary-red)';
+                        this.querySelector('.brand-subtitle').style.color = 'var(--secondary-gold)';
+                    });
+                }
+
+                // Footer brand text hover effect
+                const footerBrandText = document.querySelector('.footer-brand-text');
+                if (footerBrandText) {
+                    footerBrandText.addEventListener('mouseenter', function() {
+                        this.querySelector('.footer-brand-name').style.color = 'var(--accent-gold)';
+                        this.querySelector('.footer-brand-subtitle').style.color = 'white';
+                    });
+
+                    footerBrandText.addEventListener('mouseleave', function() {
+                        this.querySelector('.footer-brand-name').style.color = 'white';
+                        this.querySelector('.footer-brand-subtitle').style.color = 'var(--accent-gold)';
+                    });
+                }
+
+                // Indonesian greeting in console
+                console.log('%c✨ Selamat Datang di JOSS GANDOS ✨',
+                    'background: linear-gradient(135deg, #B22222, #D4A017); color: white; padding: 12px 24px; border-radius: 8px; font-size: 16px; font-weight: bold;'
+                );
+
+                // Add subtle animation to cards on scroll
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, observerOptions);
+
+                // Observe all modern cards
+                document.querySelectorAll('.modern-card').forEach(card => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    observer.observe(card);
+                });
+
+                // Add hover effect to social icons
+                document.querySelectorAll('.social-icon').forEach(icon => {
+                    icon.addEventListener('mouseenter', function() {
+                        this.style.transform = 'translateY(-5px) rotate(10deg)';
+                    });
+
+                    icon.addEventListener('mouseleave', function() {
+                        this.style.transform = 'translateY(0) rotate(0)';
+                    });
+                });
+
+                // Add ripple effect to buttons
+                document.querySelectorAll('.btn-primary').forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        const ripple = document.createElement('span');
+                        const rect = this.getBoundingClientRect();
+                        const size = Math.max(rect.width, rect.height);
+                        const x = e.clientX - rect.left - size / 2;
+                        const y = e.clientY - rect.top - size / 2;
+
+                        ripple.style.cssText = `
+                            position: absolute;
+                            border-radius: 50%;
+                            background: rgba(255, 255, 255, 0.6);
+                            transform: scale(0);
+                            animation: ripple 0.6s linear;
+                            width: ${size}px;
+                            height: ${size}px;
+                            top: ${y}px;
+                            left: ${x}px;
+                            pointer-events: none;
+                        `;
+
+                        this.appendChild(ripple);
+
+                        setTimeout(() => {
+                            ripple.remove();
+                        }, 600);
+                    });
+                });
+
+                // Add CSS for ripple animation
+                const rippleStyle = document.createElement('style');
+                rippleStyle.textContent = `
+                    @keyframes ripple {
+                        to {
+                            transform: scale(4);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(rippleStyle);
+
+                // Image preloading for better performance
+                const logoUrl =
+                    'https://image2url.com/r2/default/images/1772507915575-893cf187-2305-4535-8818-cb83425b6fab.png';
+
+                const logoImage = new Image();
+                logoImage.src = logoUrl;
+
+                logoImage.onload = function() {};
+
+                logoImage.onerror = function() {
+                    console.warn('Logo gagal dimuat, menggunakan fallback');
+                    // Fallback untuk logo yang gagal dimuat
+                    document.querySelectorAll('.brand-logo, .footer-logo').forEach(logo => {
+                        logo.alt = 'JOSS GANDOS - Restoran Indonesia';
+                        logo.style.backgroundColor = '#B22222';
+                        logo.style.padding = '10px';
+                        logo.style.borderRadius = '5px';
+                        logo.style.color = 'white';
+                        logo.style.fontFamily = "'Inter', sans-serif";
+                        logo.style.fontSize = '1rem';
+                        logo.style.fontWeight = '800';
+                        logo.style.display = 'flex';
+                        logo.style.alignItems = 'center';
+                        logo.style.justifyContent = 'center';
+                        logo.innerHTML = 'JOSS<br>GANDOS';
+                        logo.style.lineHeight = '1.2';
+                        logo.style.textAlign = 'center';
+                        logo.style.width = '50px';
+                        logo.style.height = '50px';
+
+
+                    });
+                };
+
+
+                // ==========================================
+                // MOBILE NAVBAR - ANIMASI TERSELARAS
+                // ==========================================
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                const navbarCollapse = document.querySelector('#navbarNav');
+
+                if (navbarToggler && navbarCollapse && window.bootstrap) {
+                    const navbarInstance = bootstrap.Collapse.getOrCreateInstance(
+                        navbarCollapse, {
+                            toggle: false
+                        }
+                    );
+
+                    const navItems = navbarCollapse.querySelectorAll('.nav-item');
+
+                    // Persiapkan animasi saat menu mulai dibuka.
+                    navbarCollapse.addEventListener('show.bs.collapse', function() {
+                        if (window.innerWidth >= 992) return;
+
+                        navbarCollapse.classList.remove('closing-items');
+                        navbarCollapse.classList.add('opening');
+                    });
+
+                    // Animasi masuk selesai ketika dropdown selesai terbuka.
+                    navbarCollapse.addEventListener('shown.bs.collapse', function() {
+                        navbarCollapse.classList.remove('opening');
+                    });
+
+                    // Judul menu mulai keluar bersamaan dengan
+                    // background yang mengecil melalui Bootstrap.
+                    navbarCollapse.addEventListener('hide.bs.collapse', function() {
+                        if (window.innerWidth >= 992) return;
+
+                        navbarCollapse.classList.remove('opening');
+                        navbarCollapse.classList.add('closing-items');
+                    });
+
+                    // Bersihkan status animasi setelah dropdown tertutup.
+                    navbarCollapse.addEventListener('hidden.bs.collapse', function() {
+                        navbarCollapse.classList.remove('opening', 'closing-items');
+
+                        navItems.forEach(function(item) {
+                            item.style.animation = '';
+                            item.style.animationDelay = '';
+                        });
+                    });
+
+                    // Tutup menu ketika tautan dipilih.
+                    navbarCollapse.querySelectorAll('.nav-link').forEach(function(link) {
+                        link.addEventListener('click', function() {
+                            if (window.innerWidth < 992) {
+                                navbarInstance.hide();
+                            }
+                        });
+                    });
+
+                    // Tutup menu saat area kosong ditekan.
+                    document.addEventListener('pointerdown', function(event) {
+                        if (window.innerWidth >= 992) return;
+                        if (!navbarCollapse.classList.contains('show')) return;
+
+                        const target = event.target instanceof Element ?
+                            event.target :
+                            event.target?.parentElement;
+
+                        if (!target) return;
+
+                        // Tombol hamburger tetap ditangani Bootstrap.
+                        if (target.closest('.navbar-toggler')) return;
+
+                        // Klik tautan ditangani oleh event link.
+                        if (target.closest('#navbarNav .nav-link')) return;
+
+                        navbarInstance.hide();
+                    }, true);
+
+                    // Rapikan status jika layar berubah ke desktop.
+                    window.addEventListener('resize', function() {
+                        if (window.innerWidth >= 992) {
+                            navbarCollapse.classList.remove(
+                                'opening',
+                                'closing-items'
+                            );
+
+                            navItems.forEach(function(item) {
+                                item.style.animation = '';
+                                item.style.animationDelay = '';
+                            });
+
+                            if (navbarCollapse.classList.contains('show')) {
+                                navbarInstance.hide();
+                            }
+                        }
+                    });
+                }
+
+
+
+                // Fix for zoom 100% - prevent horizontal scroll
+                function handleZoom() {
+                    const viewportWidth = window.innerWidth;
+                    const bodyWidth = document.body.clientWidth;
+
+                    if (bodyWidth > viewportWidth) {
+                        document.documentElement.style.overflowX = 'hidden';
+                        document.body.style.overflowX = 'hidden';
+                    } else {
+                        document.documentElement.style.overflowX = 'auto';
+                        document.body.style.overflowX = 'auto';
+                    }
+                }
+
+                // Initial check
+                handleZoom();
+
+                // Check on resize and zoom
+                window.addEventListener('resize', handleZoom);
+
+                // Check after CSS animations
+                setTimeout(handleZoom, 1000);
+
+                // Function to center navbar items
+                function centerNavbarItems() {
+                    const navbarNav = document.querySelector('.navbar-nav');
+                    const navLinks = document.querySelectorAll('.nav-link:not(.reservasi-btn)');
+                    const reservasiBtn = document.querySelector('.nav-link.reservasi-btn');
+
+                    if (window.innerWidth >= 992) {
+                        // Calculate total width of nav items
+                        let totalWidth = 0;
+                        navLinks.forEach(link => {
+                            totalWidth += link.offsetWidth;
+                        });
+
+                        if (reservasiBtn) {
+                            totalWidth += reservasiBtn.offsetWidth;
+                        }
+
+                        // Calculate available space
+                        const container = document.querySelector('.navbar > .container');
+                        const brandWidth = document.querySelector('.navbar-brand').offsetWidth;
+                        const availableWidth = container.offsetWidth - brandWidth - 100; // padding/margin
+
+                        // If nav items are too wide, adjust
+                        if (totalWidth > availableWidth * 0.85) {
+                            // Reduce padding slightly
+                            navLinks.forEach(link => {
+                                link.style.padding = '0.4rem 0.6rem !important';
+                                link.style.fontSize = '0.85rem';
+                            });
+                            if (reservasiBtn) {
+                                reservasiBtn.style.padding = '0.4rem 0.8rem !important';
+                                reservasiBtn.style.fontSize = '0.85rem';
+                            }
+                        } else {
+                            // Reset to normal
+                            navLinks.forEach(link => {
+                                link.style.padding = '';
+                                link.style.fontSize = '';
+                            });
+                            if (reservasiBtn) {
+                                reservasiBtn.style.padding = '';
+                                reservasiBtn.style.fontSize = '';
+                            }
+                        }
+
+                        // Center the nav items
+                        const remainingSpace = availableWidth - totalWidth;
+                        if (remainingSpace > 0) {
+                            navbarNav.style.marginLeft = (remainingSpace / 2) + 'px';
+                        } else {
+                            navbarNav.style.marginLeft = '0';
+                        }
+                    } else {
+                        navbarNav.style.marginLeft = '0';
+                    }
+                }
+
+                // Run centering on load and resize
+                window.addEventListener('load', centerNavbarItems);
+                window.addEventListener('resize', centerNavbarItems);
+
+                // Also run after a short delay to ensure all elements are loaded
+                setTimeout(centerNavbarItems, 500);
+            });
+
+
+            // Notification function
+            function showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.className = 'position-fixed top-0 end-0 m-4 p-3 shadow rounded';
+                notification.style.cssText = `
+                    background: white;
+                    border-left: 4px solid ${type === 'success' ? '#2ecc71' : type === 'error' ? '#e74c3c' : '#3498db'};
+                    z-index: 9999;
+                    max-width: 350px;
+                    animation: slideInRight 0.3s ease;
+                    font-family: 'Inter', sans-serif;
+                    border: 1px solid rgba(180, 34, 34, 0.1);
+                    border-radius: 12px;
+                    backdrop-filter: blur(10px);
+                    background: rgba(255, 255, 255, 0.95);
+                `;
+
+                notification.innerHTML = `
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}
+                            me-3" style="color: ${type === 'success' ? '#2ecc71' : type === 'error' ? '#e74c3c' : '#3498db'};"></i>
+                        <div>
+                            <strong class="d-block" style="color: var(--dark-charcoal);">${message}</strong>
+                            <small class="text-muted">JOSS GANDOS Restoran</small>
+                        </div>
+                    </div>
+                `;
+
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    notification.style.transform = 'translateX(100%)';
+                    notification.style.transition = 'all 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }, 4000);
+            }
+
+            // Add slideInRight animation for notifications
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideInRight {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Parallax effect for hero sections
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.hero-section');
+
+                parallaxElements.forEach(element => {
+                    const rate = scrolled * -0.5;
+                    element.style.transform = `translate3d(0, ${rate}px, 0)`;
+                });
+            });
+        </script>
+
+        @section('scripts')
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+
+                    if (window.innerWidth >= 992) {
+
+                        const items = document.querySelectorAll(".navbar-nav .nav-item");
+
+                        items.forEach((item, index) => {
+
+                            item.style.opacity = "0";
+                            item.style.transform = "translateY(-25px)";
+
+                            setTimeout(() => {
+
+                                item.style.transition = "all .6s cubic-bezier(.22,1,.36,1)";
+                                item.style.opacity = "1";
+                                item.style.transform = "translateY(0)";
+
+                            }, 150 + index * 150);
+
+                        });
+
+                    }
+
+                });
+            </script>
+        @endsection
+        @yield('scripts')
+    </body>
+
+    </html>

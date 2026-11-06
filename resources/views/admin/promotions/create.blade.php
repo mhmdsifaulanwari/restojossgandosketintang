@@ -1,0 +1,897 @@
+@extends('layouts.admin')
+
+@section('title', 'Tambah Promosi Baru')
+@section('page-title', 'Tambah Promosi Baru')
+
+@section('styles')
+    <style>
+        /* Premium Gradient Variables */
+        :root {
+            --gradient-primary: linear-gradient(135deg, #8B0000 0%, #B22222 50%, #DC143C 100%);
+            --gradient-soft: linear-gradient(135deg, #FFF5F5 0%, #FFE4E4 100%);
+            --gradient-card: linear-gradient(145deg, #FFFFFF 0%, #FFF8F8 100%);
+            --gradient-hover: linear-gradient(135deg, #660000 0%, #8B0000 50%, #B22222 100%);
+            --accent-red: #DC143C;
+            --deep-red: #8B0000;
+            --soft-red: #FFE4E1;
+            --text-dark: #2D3436;
+            --text-soft: #636E72;
+            --shadow-sm: 0 4px 6px rgba(139, 0, 0, 0.05);
+            --shadow-md: 0 8px 15px rgba(139, 0, 0, 0.1);
+            --shadow-lg: 0 15px 30px rgba(139, 0, 0, 0.15);
+            --border-radius: 16px;
+        }
+
+        /* Container Styling */
+        .form-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Card Styling */
+        .content-card {
+            background: var(--gradient-card);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(220, 20, 60, 0.1);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideIn 0.5s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(139, 0, 0, 0.2);
+        }
+
+        /* Card Header */
+        .card-header {
+            background: var(--gradient-primary);
+            padding: 25px 30px;
+            border-bottom: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+            pointer-events: none;
+        }
+
+        .card-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .card-header h2 {
+            margin: 0;
+            color: white;
+            font-size: 1.75rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .form-group label::before {
+            content: '•';
+            color: var(--accent-red);
+            font-size: 1.5rem;
+            line-height: 0;
+        }
+
+        .form-control {
+            border: 2px solid #FFE4E1;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-control:hover {
+            border-color: var(--accent-red);
+        }
+
+        .form-control:focus {
+            border-color: var(--deep-red);
+            box-shadow: 0 0 0 4px rgba(139, 0, 0, 0.1);
+            outline: none;
+            transform: translateY(-2px);
+        }
+
+        .form-control.is-invalid {
+            border-color: #E74C3C;
+            background-image: none;
+        }
+
+        .form-control.is-invalid:focus {
+            box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.1);
+        }
+
+        .invalid-feedback {
+            color: #E74C3C;
+            font-size: 0.875rem;
+            margin-top: 5px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .invalid-feedback::before {
+            content: '⚠️';
+            font-size: 0.875rem;
+        }
+
+        /* Input Group */
+        .input-group {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .input-group-text {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .input-group .form-control {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        /* Text Muted */
+        .text-muted {
+            color: var(--text-soft) !important;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .text-muted i {
+            color: var(--accent-red);
+        }
+
+        /* Image Preview */
+        .image-preview-container {
+            background: var(--gradient-soft);
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px dashed var(--accent-red);
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .image-preview-container:hover {
+            border-color: var(--deep-red);
+            background: #FFF0F0;
+        }
+
+        .image-preview {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-preview:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Alert Boxes */
+        .alert {
+            border-radius: 16px;
+            border: none;
+            padding: 20px;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+            animation: slideInRight 0.5s ease;
+        }
+
+        .alert::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--deep-red), var(--accent-red));
+        }
+
+        .alert-info {
+            background: linear-gradient(135deg, #FFF0F5 0%, #FFE4E8 100%);
+            border-left: 6px solid var(--deep-red);
+            color: var(--text-dark);
+        }
+
+        .alert-warning {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE9D6 100%);
+            border-left: 6px solid #FF6B6B;
+            color: var(--text-dark);
+        }
+
+        .alert i {
+            color: var(--deep-red);
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .alert ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 15px;
+        }
+
+        .alert ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(139, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .alert ul li::before {
+            content: '✨';
+            font-size: 0.875rem;
+            color: var(--deep-red);
+        }
+
+        .alert ul li:last-child {
+            border-bottom: none;
+        }
+
+        .alert code {
+            background: rgba(139, 0, 0, 0.05);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(139, 0, 0, 0.1);
+            color: var(--deep-red);
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+
+        /* Form Check Switch */
+        .form-check-input {
+            width: 50px;
+            height: 25px;
+            margin-top: 8px;
+            cursor: pointer;
+            background-color: #FFE4E1;
+            border-color: #FFE4E1;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--deep-red);
+            border-color: var(--deep-red);
+        }
+
+        .form-check-input:focus {
+            box-shadow: 0 0 0 4px rgba(139, 0, 0, 0.1);
+        }
+
+        .form-check-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        /* Buttons */
+        .btn-admin {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-admin::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-admin:hover {
+            background: var(--gradient-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: white;
+        }
+
+        .btn-admin:hover::before {
+            left: 100%;
+        }
+
+        .btn-admin-outline {
+            background: transparent;
+            color: var(--deep-red);
+            border: 2px solid var(--deep-red);
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-admin-outline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(139, 0, 0, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+
+        .btn-admin-outline:hover {
+            color: var(--deep-red);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-admin-outline:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Row and Column spacing */
+        .row {
+            margin: 0 15px;
+        }
+
+        .col-md-4,
+        .col-md-6,
+        .col-md-8,
+        .col-md-12 {
+            padding: 10px;
+        }
+
+        /* HR Styling */
+        hr {
+            margin: 25px 30px;
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-red), var(--deep-red), var(--accent-red), transparent);
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Floating Labels Animation */
+        .form-group.focused label {
+            color: var(--deep-red);
+            transform: translateX(5px);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #FFE4E1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #8B0000 0%, #B22222 100%);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8B0000;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .card-header {
+                padding: 20px;
+            }
+
+            .card-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .row {
+                margin: 0;
+            }
+
+            .btn-admin,
+            .btn-admin-outline {
+                padding: 10px 20px;
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            .d-flex {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .col-md-4,
+            .col-md-6,
+            .col-md-8 {
+                padding: 5px;
+            }
+        }
+
+        /* Loading state for preview */
+        .image-preview.loading {
+            opacity: 0.5;
+            filter: blur(2px);
+        }
+
+        /* Success animation for form submission */
+        .btn-admin.success {
+            animation: pulse 0.5s ease;
+        }
+
+        /* Tooltip styling */
+        .form-group:hover .tooltip-hint {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tooltip-hint {
+            position: absolute;
+            right: 10px;
+            top: 40px;
+            background: var(--deep-red);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            opacity: 0;
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        /* Required field indicator */
+        label[for$="*"]::after {
+            content: '*';
+            color: var(--deep-red);
+            margin-left: 4px;
+        }
+
+        /* Placeholder styling */
+        .form-control::placeholder {
+            color: #B2BEC3;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+    </style>
+@endsection
+
+@section('content')
+    @if (session('error'))
+        <div class="alert alert-warning" role="alert">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>Perhatian!</strong>
+            {{ session('error') }}
+        </div>
+    @endif
+    <div class="form-container">
+        <div class="content-card">
+            <div class="card-header">
+                <h2>Tambah Promosi Baru</h2>
+            </div>
+
+            <form action="{{ route('admin.promotions.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label for="title">Judul Promosi *</label>
+                                    <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                        id="title" name="title" value="{{ old('title') }}" required
+                                        placeholder="Masukkan judul promosi...">
+                                    @error('title')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label for="description">Deskripsi *</label>
+                                    <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
+                                        rows="4" required placeholder="Jelaskan detail promosi...">{{ old('description') }}</textarea>
+                                    @error('description')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label for="current_price">Harga Promosi *</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Rp</span>
+                                        <input type="number"
+                                            class="form-control @error('current_price') is-invalid @enderror"
+                                            id="current_price" name="current_price" min="0"
+                                            value="{{ old('current_price') }}" required placeholder="0">
+                                    </div>
+                                    @error('current_price')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label for="old_price">Harga Asli (Sebelum Diskon)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Rp</span>
+                                        <input type="number" class="form-control @error('old_price') is-invalid @enderror"
+                                            id="old_price" name="old_price" min="0" value="{{ old('old_price') }}"
+                                            placeholder="0">
+                                    </div>
+                                    <small class="text-muted"><i class="fas fa-info-circle"></i> Kosongkan jika tidak ada
+                                        diskon</small>
+                                    @error('old_price')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label for="start_date">Tanggal Mulai *</label>
+                                    <input type="datetime-local"
+                                        class="form-control @error('start_date') is-invalid @enderror" id="start_date"
+                                        name="start_date" value="{{ old('start_date') }}" required>
+                                    @error('start_date')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label for="end_date">Tanggal Berakhir *</label>
+                                    <input type="datetime-local"
+                                        class="form-control @error('end_date') is-invalid @enderror" id="end_date"
+                                        name="end_date" value="{{ old('end_date') }}" required>
+                                    @error('end_date')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label for="sort_order">Urutan</label>
+                                    <input type="number" class="form-control @error('sort_order') is-invalid @enderror"
+                                        id="sort_order" name="sort_order" min="0" value="{{ old('sort_order', 0) }}"
+                                        placeholder="0">
+                                    <small class="text-muted"><i class="fas fa-sort-numeric-down"></i> Semakin kecil
+                                        angka, semakin awal tampil</small>
+                                    @error('sort_order')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <div class="form-check form-switch mt-4">
+                                    <input class="form-check-input" type="checkbox" id="is_active" name="is_active"
+                                        value="1" checked>
+                                    <label class="form-check-label" for="is_active">Aktifkan Promosi</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <div class="form-check form-switch mt-4">
+                            <input type="hidden" name="show_home_popup" value="0">
+
+                            <input class="form-check-input" type="checkbox" id="show_home_popup" name="show_home_popup"
+                                value="1" {{ old('show_home_popup') ? 'checked' : '' }}>
+
+                            <label class="form-check-label" for="show_home_popup">
+                                Tampilkan sebagai Popup di Home
+                            </label>
+
+                            <small class="text-muted d-block">
+                                <i class="fas fa-home"></i>
+                                Promo ini akan ditampilkan pada popup halaman Home.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group mb-3">
+                            <label for="image_file">Foto Promosi *</label>
+
+                            <input type="file" class="form-control @error('image_file') is-invalid @enderror"
+                                id="image_file" name="image_file" accept=".jpg,.jpeg,.png,.webp" required>
+
+                            <small class="text-muted">
+                                <i class="fas fa-image"></i>
+                                Pilih foto berformat JPG, JPEG, PNG, atau WebP. Maksimal 5 MB.
+                            </small>
+
+                            @error('image_file')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+
+                            <div class="image-preview-container mt-3" style="display: none;">
+                                <label class="form-label">Preview Gambar:</label>
+                                <img src="" class="image-preview" id="image-preview" alt="Preview Foto Promosi">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="d-flex justify-content-between">
+                    <a href="{{ route('admin.promotions.index') }}" class="btn btn-admin-outline">
+                        <i class="fas fa-arrow-left"></i> Kembali
+                    </a>
+                    <button type="submit" class="btn btn-admin">
+                        <i class="fas fa-save"></i> Simpan Promosi
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+@endsection
+
+@section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Preview Foto Promosi dari Upload File
+            const imageFile = document.getElementById('image_file');
+            const previewContainer = document.querySelector('.image-preview-container');
+            const previewImage = document.getElementById('image-preview');
+
+            imageFile.addEventListener('change', function() {
+                const file = this.files[0];
+
+                if (file) {
+                    const allowedTypes = [
+                        'image/jpeg',
+                        'image/png',
+                        'image/webp'
+                    ];
+
+                    if (!allowedTypes.includes(file.type)) {
+                        alert('Format foto harus JPG, JPEG, PNG, atau WebP.');
+                        this.value = '';
+                        previewContainer.style.display = 'none';
+                        previewImage.src = '';
+                        return;
+                    }
+
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert('Ukuran foto maksimal 5 MB.');
+                        this.value = '';
+                        previewContainer.style.display = 'none';
+                        previewImage.src = '';
+                        return;
+                    }
+
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        previewImage.src = e.target.result;
+                        previewContainer.style.display = 'block';
+                    };
+
+                    reader.readAsDataURL(file);
+
+                } else {
+                    previewContainer.style.display = 'none';
+                    previewImage.src = '';
+                }
+            });
+
+            // Validate old_price > current_price
+            const currentPrice = document.getElementById('current_price');
+            const oldPrice = document.getElementById('old_price');
+
+            function validatePrices() {
+                if (oldPrice.value && currentPrice.value) {
+                    if (parseFloat(oldPrice.value) <= parseFloat(currentPrice.value)) {
+                        oldPrice.setCustomValidity('Harga asli harus lebih besar dari harga promosi');
+                        oldPrice.classList.add('is-invalid');
+                    } else {
+                        oldPrice.setCustomValidity('');
+                        oldPrice.classList.remove('is-invalid');
+                    }
+                } else {
+                    oldPrice.setCustomValidity('');
+                    oldPrice.classList.remove('is-invalid');
+                }
+            }
+
+            currentPrice.addEventListener('input', validatePrices);
+            oldPrice.addEventListener('input', validatePrices);
+
+            // Validate end_date > start_date
+            const startDate = document.getElementById('start_date');
+            const endDate = document.getElementById('end_date');
+
+            function validateDates() {
+                if (startDate.value && endDate.value) {
+                    const start = new Date(startDate.value);
+                    const end = new Date(endDate.value);
+
+                    if (end <= start) {
+                        endDate.setCustomValidity('Tanggal berakhir harus setelah tanggal mulai');
+                        endDate.classList.add('is-invalid');
+                    } else {
+                        endDate.setCustomValidity('');
+                        endDate.classList.remove('is-invalid');
+                    }
+                } else {
+                    endDate.setCustomValidity('');
+                    endDate.classList.remove('is-invalid');
+                }
+            }
+
+            startDate.addEventListener('input', validateDates);
+            endDate.addEventListener('input', validateDates);
+
+            // Set minimum date for end_date
+            startDate.addEventListener('change', function() {
+                endDate.min = this.value;
+                validateDates();
+            });
+
+            // Add animation on form submit
+            const form = document.querySelector('form');
+            const submitBtn = document.querySelector('button[type="submit"]');
+
+            form.addEventListener('submit', function(e) {
+                validatePrices();
+                validateDates();
+
+                if (!form.checkValidity()) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                } else {
+                    submitBtn.classList.add('success');
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menyimpan...';
+                }
+
+                form.classList.add('was-validated');
+            });
+
+            // Add floating label effect
+            const formGroups = document.querySelectorAll('.form-group');
+            formGroups.forEach(group => {
+                const input = group.querySelector('input, textarea');
+                if (input) {
+                    input.addEventListener('focus', () => {
+                        group.classList.add('focused');
+                    });
+
+                    input.addEventListener('blur', () => {
+                        group.classList.remove('focused');
+                    });
+                }
+            });
+        });
+    </script>
+@endsection
