@@ -961,7 +961,7 @@ class AdminController extends Controller
             // ==========================================
             // UPLOAD FOTO BARU JIKA ADA
             // ==========================================
-            $oldImage = $promotion->image_url;
+            $oldImage = $promotion->getRawOriginal('image_url');
             $newImage = null;
 
             if ($request->hasFile('image_file')) {
@@ -980,11 +980,28 @@ class AdminController extends Controller
 
             // Hapus foto lama setelah data berhasil diperbarui
             if ($newImage && !empty($oldImage)) {
+
                 if (
-                    !str_starts_with($oldImage, 'http') &&
-                    str_starts_with($oldImage, 'images/promotions/')
+                    !str_starts_with($oldImage, 'http://') &&
+                    !str_starts_with($oldImage, 'https://')
                 ) {
-                    \Illuminate\Support\Facades\Storage::disk('public')->delete($oldImage);
+                    $oldImage = preg_replace(
+                        '#^(public/|storage/)#',
+                        '',
+                        $oldImage
+                    );
+
+                    if (str_starts_with($oldImage, 'images/promotions/')) {
+                        $disk = Storage::disk('public');
+
+                        if ($disk->exists($oldImage)) {
+                            $disk->delete($oldImage);
+
+                            Log::info('Foto promosi lama berhasil dihapus: ' . $oldImage);
+                        } else {
+                            Log::warning('Foto promosi lama tidak ditemukan: ' . $oldImage);
+                        }
+                    }
                 }
             }
 
