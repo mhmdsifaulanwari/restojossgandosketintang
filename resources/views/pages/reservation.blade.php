@@ -443,8 +443,8 @@
         }
 
         /* ============================================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   CSS VARIABLES - MODERN SOPHISTICATED PALETTE
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ============================================ */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               CSS VARIABLES - MODERN SOPHISTICATED PALETTE
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ============================================ */
         :root {
             /* Primary Colors - Refined & Sophisticated */
             --primary: #C62828;
@@ -501,7 +501,7 @@
             padding: 40px 0;
             margin-top: 0;
             overflow: hidden;
-            background: #FFF7E8;
+            background: #F4F5F6;
         }
 
         /* Posisi teks mengikuti lebar teks pada Hero Menu */
@@ -515,9 +515,9 @@
         }
 
         /* ============================================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   HERO GRADIENT - DINONAKTIFKAN
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Agar tidak menutupi background putih
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ============================================ */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               HERO GRADIENT - DINONAKTIFKAN
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               Agar tidak menutupi background putih
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ============================================ */
         .elegant-gradient {
             display: none;
         }
@@ -851,8 +851,8 @@
         }
 
         /* ============================================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       BUTTON OUTLINE - UNTUK BACKGROUND PUTIH
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ============================================ */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   BUTTON OUTLINE - UNTUK BACKGROUND PUTIH
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ============================================ */
         .btn-outline-elegant {
             background: transparent;
 
@@ -885,9 +885,9 @@
         }
 
         /* ============================================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ANIMASI MASUK GAMBAR HERO RESERVASI
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           Diadaptasi dari animasi Hero Galeri
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ============================================ */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ANIMASI MASUK GAMBAR HERO RESERVASI
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       Diadaptasi dari animasi Hero Galeri
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ============================================ */
 
         .reservation-hero-enter {
             opacity: 0;
@@ -1575,8 +1575,8 @@
         }
 
         /* =========================================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           DELIVERY CARD - TOMBOL SELALU SEJAJAR
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ========================================= */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       DELIVERY CARD - TOMBOL SELALU SEJAJAR
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ========================================= */
 
         .delivery-app-content {
             display: flex;
@@ -1782,15 +1782,15 @@
         }
 
         /* =========================================================
-                                                                                               MOBILE RESERVASI
-                                                                                               Optimized untuk layar HP
-                                                                                               ========================================================= */
+                                                                                                           MOBILE RESERVASI
+                                                                                                           Optimized untuk layar HP
+                                                                                                           ========================================================= */
 
         @media (max-width: 768px) {
 
             /* =====================================================
-                                                                                                   HERO
-                                                                                                   ===================================================== */
+                                                                                                               HERO
+                                                                                                               ===================================================== */
 
             .elegant-hero {
                 min-height: 100svh !important;
@@ -1826,7 +1826,7 @@
             }
 
             /* Hilangkan struktur kolom Bootstrap agar
-                                                                                                   urutan mobile bisa dikontrol */
+                                                                                                               urutan mobile bisa dikontrol */
             .elegant-hero .col-lg-6:first-child,
             .elegant-hero .col-lg-6:nth-child(2) {
                 display: contents;
@@ -1834,8 +1834,8 @@
 
 
             /* =====================================================
-                                                                                                   1. JUDUL KECIL
-                                                                                                   ===================================================== */
+                                                                                                               1. JUDUL KECIL
+                                                                                                               ===================================================== */
 
             .elegant-hero .premium-badge {
                 order: 1;
@@ -1868,8 +1868,8 @@
 
 
             /* =====================================================
-                                                                                                   2. JUDUL UTAMA
-                                                                                                   ===================================================== */
+                                                                                                               2. JUDUL UTAMA
+                                                                                                               ===================================================== */
 
             .elegant-hero .elegant-heading {
                 order: 2;
@@ -1906,8 +1906,8 @@
 
 
             /* =====================================================
-                                                                                                   3. FOTO HERO
-                                                                                                   ===================================================== */
+                                                                                                               3. FOTO HERO
+                                                                                                               ===================================================== */
 
             .elegant-hero .hero-image-wrapper,
             .elegant-hero .reservation-hero-visual {
@@ -1949,8 +1949,8 @@
 
 
             /* =====================================================
-                                                                                                   4. DESKRIPSI HERO
-                                                                                                   ===================================================== */
+                                                                                                               4. DESKRIPSI HERO
+                                                                                                               ===================================================== */
 
             .elegant-hero .elegant-desc {
                 order: 4;
@@ -1972,8 +1972,8 @@
 
 
             /* =====================================================
-                                                                                                   DELIVERY SERVICES
-                                                                                                   ===================================================== */
+                                                                                                               DELIVERY SERVICES
+                                                                                                               ===================================================== */
 
             #delivery-services {
                 width: 100%;
@@ -2087,8 +2087,8 @@
 
 
             /* =====================================================
-                                                                                                   CONTACT INFO
-                                                                                                   ===================================================== */
+                                                                                                               CONTACT INFO
+                                                                                                               ===================================================== */
 
             #contact-info {
                 width: 100%;
@@ -2142,8 +2142,8 @@
 
 
             /* =====================================================
-                                                                                                   CONTACT CARD
-                                                                                                   ===================================================== */
+                                                                                                               CONTACT CARD
+                                                                                                               ===================================================== */
 
             .contact-info-card,
             .social-media-card,
@@ -2189,8 +2189,8 @@
 
 
             /* =====================================================
-                                                                                                   MAP
-                                                                                                   ===================================================== */
+                                                                                                               MAP
+                                                                                                               ===================================================== */
 
             .map-card {
                 border-radius: 28px;
@@ -2230,8 +2230,8 @@
 
 
             /* =====================================================
-                                                                                                   SOCIAL ICON
-                                                                                                   ===================================================== */
+                                                                                                               SOCIAL ICON
+                                                                                                               ===================================================== */
 
             .social-media-card .d-flex {
                 gap: 12px !important;
@@ -2385,22 +2385,18 @@
             }
         }
 
-        /* Background Informasi Kontak */
+        /* Background Soft Gray - Minimalis Modern */
         #contact-info,
-        #contact-info.bg-light {
-            background-color: #FFF7E8 !important;
-        }
-
-        /* Background Pesanan */
+        #contact-info.bg-light,
         #delivery-services,
         #delivery-services.bg-light {
-            background-color: #FFF7E8 !important;
+            background-color: #F4F5F6 !important;
         }
 
         /* =====================================================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               MENYATUKAN SECTION PESANAN DAN INFORMASI KONTAK
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               Menghilangkan garis/jarak pembatas antar-section
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ===================================================== */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           MENYATUKAN SECTION PESANAN DAN INFORMASI KONTAK
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           Menghilangkan garis/jarak pembatas antar-section
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ===================================================== */
 
         #delivery-services {
             margin-bottom: 0 !important;
@@ -2431,9 +2427,9 @@
 
 
         /* =========================================================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ANIMASI TEKS HERO RESERVASI
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Efek: muncul perlahan sambil bergerak dari bawah ke atas
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ========================================================= */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ANIMASI TEKS HERO RESERVASI
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               Efek: muncul perlahan sambil bergerak dari bawah ke atas
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ========================================================= */
 
 
 
@@ -2472,10 +2468,10 @@
 
 
         /* =========================================================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ANIMASI GAMBAR HERO RESERVASI
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Dibuat sama persis dengan animasi piring pada Galeri
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Gambar masuk dari luar sisi kanan halaman
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ========================================================= */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ANIMASI GAMBAR HERO RESERVASI
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               Dibuat sama persis dengan animasi piring pada Galeri
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               Gambar masuk dari luar sisi kanan halaman
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ========================================================= */
 
         .reservation-hero-visual {
             opacity: 0;
@@ -2507,13 +2503,13 @@
         }
 
         /* =========================================================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                               MOBILE HERO RESERVASI
-                                                                                                                                                                                                                                                                                                                                                                                                                                                               URUTAN:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                               1. Teks kecil
-                                                                                                                                                                                                                                                                                                                                                                                                                                                               2. Judul
-                                                                                                                                                                                                                                                                                                                                                                                                                                                               3. Foto
-                                                                                                                                                                                                                                                                                                                                                                                                                                                               4. Deskripsi
-                                                                                                                                                                                                                                                                                                                                                                                                                                                               ========================================================= */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                           MOBILE HERO RESERVASI
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                           URUTAN:
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                           1. Teks kecil
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                           2. Judul
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                           3. Foto
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                           4. Deskripsi
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ========================================================= */
 
         @media (max-width: 768px) {
 
@@ -2540,9 +2536,9 @@
             }
 
             /*
-                                                                                                                                                                                                                                                                                                                                                                                                                             * Pastikan hero benar-benar menempati
-                                                                                                                                                                                                                                                                                                                                                                                                                             * tinggi layar mobile sebelum section berikutnya.
-                                                                                                                                                                                                                                                                                                                                                                                                                             */
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * Pastikan hero benar-benar menempati
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * tinggi layar mobile sebelum section berikutnya.
+                                                                                                                                                                                                                                                                                                                                                                                                                                         */
             .elegant-hero+#delivery-services {
                 margin-top: 0 !important;
             }
@@ -2561,8 +2557,8 @@
             }
 
             /* =====================================================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                   AGAR ELEMEN BISA DIATUR URUTANNYA DI MOBILE
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ===================================================== */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                               AGAR ELEMEN BISA DIATUR URUTANNYA DI MOBILE
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ===================================================== */
 
             .elegant-hero .col-lg-6:first-child,
             .elegant-hero .col-lg-6:nth-child(2) {
@@ -2570,8 +2566,8 @@
             }
 
             /* =====================================================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                   1. TEKS KECIL
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ===================================================== */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                               1. TEKS KECIL
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ===================================================== */
 
             .elegant-hero .premium-badge {
                 order: 1;
@@ -2593,8 +2589,8 @@
             }
 
             /* =====================================================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                   2. JUDUL UTAMA
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ===================================================== */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                               2. JUDUL UTAMA
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ===================================================== */
 
             .elegant-hero .elegant-heading {
                 order: 2;
@@ -2628,8 +2624,8 @@
 
             as
             /* =====================================================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                   3. FOTO HERO
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ===================================================== */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                               3. FOTO HERO
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ===================================================== */
 
             .elegant-hero .hero-image-wrapper,
             .elegant-hero .reservation-hero-visual {
@@ -2670,8 +2666,8 @@
             }
 
             /* =====================================================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                   4. DESKRIPSI
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ===================================================== */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                               4. DESKRIPSI
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ===================================================== */
 
             .elegant-hero .elegant-desc {
                 order: 4;
@@ -2695,8 +2691,8 @@
         }
 
         /* =========================================
-                                                                                                                                                                                                                   DELIVERY HEADER
-                                                                                                                                                                                                                   ========================================= */
+                                                                                                                                                                                                                               DELIVERY HEADER
+                                                                                                                                                                                                                               ========================================= */
 
         #delivery-services .display-5 {
             font-family: 'Poppins', sans-serif;
@@ -2738,8 +2734,8 @@
 
 
         /* =========================================
-                                                                                                                                                                                           CONTACT HEADER
-                                                                                                                                                                                           ========================================= */
+                                                                                                                                                                                                       CONTACT HEADER
+                                                                                                                                                                                                       ========================================= */
 
         #contact-info .display-4 {
             font-family: 'Poppins', sans-serif;
@@ -2789,8 +2785,8 @@
 
 
         /* ==========================================
-                           DELIVERY BUTTON - MOBILE
-                           ========================================== */
+                                       DELIVERY BUTTON - MOBILE
+                                       ========================================== */
 
         @media (max-width: 768px) {
 
