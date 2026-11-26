@@ -2186,6 +2186,24 @@
                     font-size: 0.56rem !important;
                 }
             }
+
+            /* ==========================================
+   ACTIVE NAVBAR MENGIKUTI EFEK HOVER
+   ========================================== */
+
+            .navbar-nav .nav-link.active,
+            .navbar-nav .nav-link.active:hover {
+                background: transparent !important;
+                color: #D4A017 !important;
+                transform: translateY(-2px) !important;
+                box-shadow: none !important;
+            }
+
+            /* Garis bawah tetap terlihat pada menu aktif */
+            .navbar-nav .nav-link.active::after {
+                width: 35px !important;
+                background: #D4A017 !important;
+            }
         </style>
 
         @yield('styles')
